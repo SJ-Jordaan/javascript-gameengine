@@ -1,2 +1,2 @@
 # javascript-gameengine
-Javascript Web Based Platformer Game Engine
+Javascript Web Based 2D Platformer Game Engine
