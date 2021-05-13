@@ -9,7 +9,7 @@ var port = process.env.PORT || 8080;
 app.use((req, res, next) => {
   res.header(
     'Access-Control-Allow-Origin',
-    'https://game-engine-ui.herokuapp.com/'
+    'https://game-engine-ui.herokuapp.com'
   );
   res.header(
     'Access-Control-Allow-Headers',
