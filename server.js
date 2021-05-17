@@ -32,7 +32,7 @@ app.get("/", (req, res) => {
   res.send("API is online");
 });
 
-require("./app/routes/game.routes")(app);
+require("./app/routes/game.routes.js")(app);
 
 app.listen(port, () => {
   console.log("Our app is running on http://localhost:" + port);
