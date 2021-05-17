@@ -24,9 +24,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Setup the models from DB
 const db = require("./app/models");
-db.sequelize.sync({ force: true }).then(() => {
-  console.log("Drop and re-sync db.");
-});
+db.sequelize.sync();
 
 // set the home page route
 app.get("/", (req, res) => {
