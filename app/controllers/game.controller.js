@@ -1,18 +1,31 @@
 const db = require("../models");
-const Game = db.games;
-const Op = db.Sequelize.Op;
+const Game = db.game;
+const User = db.user;
 
 // Create and Save a new Game
 exports.create = (req, res) => {
   if (!req.body.name) {
     res.status(400).send({
-      message: "Content cannot be empty",
+      message: "Missing game name",
     });
     return;
   }
 
+  if (!req.body.id) {
+    res.status(400).send({
+      message: "Missing creator id",
+    });
+  }
+
+  if (!User.findByPk(req.body.id)) {
+    res.status(404).send({
+      message: "Creator does not exist",
+    });
+  }
+
   const game = {
     name: req.body.name,
+    userId: req.body.id,
   };
 
   Game.create(game)

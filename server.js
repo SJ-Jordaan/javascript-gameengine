@@ -24,7 +24,11 @@ app.use(express.urlencoded({ extended: true }));
 
 // Setup the models from DB
 const db = require("./app/models");
-db.sequelize.sync();
+db.sequelize.sync({ force: true }).then(() => {
+  console.log("Drop and re-sync db.");
+});
+// TODO: Uncomment for production
+// db.sequelize.sync();
 
 // set the home page route
 app.get("/", (req, res) => {
@@ -32,6 +36,8 @@ app.get("/", (req, res) => {
   res.send("API is online");
 });
 
+require("./app/routes/auth.routes.js")(app);
+require("./app/routes/user.routes.js")(app);
 require("./app/routes/game.routes.js")(app);
 
 app.listen(port, () => {
