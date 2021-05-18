@@ -17,6 +17,13 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 // TODO: Add sequalise models here
-db.games = require("./game.model.js")(sequelize, Sequelize);
+db.user = require("./user.model.js")(sequelize, Sequelize);
+db.game = require("./game.model.js")(sequelize, Sequelize);
+
+db.user.hasMany(db.game, { as: "games" });
+db.game.belongsTo(db.user, {
+  foreignKey: "id",
+  as: "creator",
+});
 
 module.exports = db;

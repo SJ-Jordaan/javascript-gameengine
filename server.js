@@ -32,6 +32,8 @@ app.get("/", (req, res) => {
   res.send("API is online");
 });
 
+require("./app/routes/auth.routes.js")(app);
+require("./app/routes/user.routes.js")(app);
 require("./app/routes/game.routes.js")(app);
 
 app.listen(port, () => {
