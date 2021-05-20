@@ -25,7 +25,6 @@ exports.signup = (req, res) => {
 exports.signin = (req, res) => {
   User.findOne({
     where: {
-      username: req.body.username,
       uid: req.body.uid,
     },
   })
