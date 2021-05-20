@@ -1,8 +1,8 @@
-module.exports = (app) => {
-  const { authJwt } = require("../middleware");
-  const user = require("../controllers/user.controller.js");
-  let router = require("express").Router();
+const { authJwt } = require("../middleware");
+const user = require("../controllers/user.controller.js");
+const router = require("express").Router();
 
+module.exports = (app) => {
   app.use((req, res, next) => {
     res.header(
       "Access-Control-Allow-Headers",
