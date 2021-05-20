@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const db = require("../models");
 const config = require("../config/auth.config");
 const User = db.user;
@@ -9,13 +11,15 @@ exports.signup = (req, res) => {
   // Save User to Database
   User.create({
     username: req.body.username,
-    password: bcrypt.hashSync(req.body.password, 8),
+    uid: req.body.uid,
   })
     .then((user) => {
       res.send({ message: "User was registered successfully!" });
     })
     .catch((err) => {
-      res.status(500).send({ message: err.message });
+      res
+        .status(500)
+        .send({ message: `User could not be signed up: ${err.message}` });
     });
 };
 
@@ -23,23 +27,12 @@ exports.signin = (req, res) => {
   User.findOne({
     where: {
       username: req.body.username,
+      uid: req.body.uid,
     },
   })
     .then((user) => {
       if (!user) {
         return res.status(404).send({ message: "User Not found." });
-      }
-
-      const passwordIsValid = bcrypt.compareSync(
-        req.body.password,
-        user.password
-      );
-
-      if (!passwordIsValid) {
-        return res.status(401).send({
-          accessToken: null,
-          message: "Invalid Password!",
-        });
       }
 
       const token = jwt.sign({ id: user.id }, config.secret, {

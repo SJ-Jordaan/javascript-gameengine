@@ -25,6 +25,7 @@ exports.create = (req, res) => {
 
   const game = {
     name: req.body.name,
+    description: req.body.description,
     userId: req.body.id,
   };
 
