@@ -37,7 +37,12 @@ isValidUID = (req, res, next) => {
       next();
     })
     .catch((error) => {
-      res.status(403).send({ message: "User does not exist" });
+      res
+        .status(403)
+        .send({
+          message: "User does not exist or see error for more details",
+          error: error,
+        });
     });
 };
 
