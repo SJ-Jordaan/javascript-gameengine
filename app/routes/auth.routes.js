@@ -1,6 +1,6 @@
 module.exports = (app) => {
   const { verifySignUp } = require("../middleware");
-  const controller = require("../controllers/auth.controller");
+  const controller = require("../controllers/auth.controller.js");
   let router = require("express").Router();
 
   app.use((req, res, next) => {
