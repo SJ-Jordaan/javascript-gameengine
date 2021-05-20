@@ -42,12 +42,14 @@ exports.create = (req, res) => {
 
 // Retrieve all Games from the database.
 exports.findAll = (req, res) => {
-  Game.findAll()
-    .then((data) => {
-      res.send(data);
+  return Game.findAll({
+    include: [{ model: User, attributes: ["username"], as: "creator" }],
+  })
+    .then((games) => {
+      return res.send(games);
     })
     .catch((err) => {
-      res.status(500).send({
+      return res.status(500).send({
         message: err.message || "Failed to find games",
       });
     });
