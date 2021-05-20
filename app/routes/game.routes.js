@@ -15,8 +15,8 @@ module.exports = (app) => {
   });
 
   router.post("/", [authJwt.verifyToken], games.create);
-  router.get("/", [authJwt.verifyToken], games.findAll);
-  router.get("/:id", [authJwt.verifyToken], games.findOne);
+  router.get("/", games.findAll);
+  router.get("/:id", games.findOne);
   router.put("/:id", [authJwt.verifyToken, authJwt.isCreator], games.update);
   router.delete("/:id", [authJwt.verifyToken, authJwt.isCreator], games.delete);
 
