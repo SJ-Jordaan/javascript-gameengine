@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
-const config = require("../config/auth.config.js");
-const admin = require("../config/firebase.config.js");
+
+const config = require("../config/auth.config");
+const admin = require("../config/firebase.config");
 const db = require("../models");
 const Game = db.game;
 
