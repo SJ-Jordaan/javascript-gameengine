@@ -15,6 +15,7 @@ exports.create = (req, res) => {
     name: req.body.name,
     description: req.body.description,
     userId: req.userId,
+    state: req.body?.state || "",
   };
 
   Game.create(game)
