@@ -1,7 +1,7 @@
 require("dotenv").config();
 
 const db = require("../models");
-const config = require("../config/auth.config");
+const config = require("../config/auth.config.js");
 const User = db.user;
 
 const jwt = require("jsonwebtoken");
