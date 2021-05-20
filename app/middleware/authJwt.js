@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
-const config = require("../config/auth.config.js");
-const admin = require("../config/firebase.config.js");
+
+const config = require("../config/auth.config");
+const admin = require("../config/firebase.config");
 const db = require("../models");
 const Game = db.game;
 
@@ -36,7 +37,12 @@ isValidUID = (req, res, next) => {
       next();
     })
     .catch((error) => {
-      res.status(403).send({ message: "User does not exist" });
+      res
+        .status(403)
+        .send({
+          message: "User does not exist or see error for more details",
+          error: error,
+        });
     });
 };
 

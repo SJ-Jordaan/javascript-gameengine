@@ -1,11 +1,10 @@
 require("dotenv").config();
-
-const db = require("../models");
-const config = require("../config/auth.config.js");
-const User = db.user;
-
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
+
+const db = require("../models");
+const config = require("../config/auth.config");
+const User = db.user;
 
 exports.signup = (req, res) => {
   // Save User to Database
@@ -26,7 +25,6 @@ exports.signup = (req, res) => {
 exports.signin = (req, res) => {
   User.findOne({
     where: {
-      username: req.body.username,
       uid: req.body.uid,
     },
   })

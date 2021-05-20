@@ -1,5 +1,5 @@
-const { verifySignUp, authJwt } = require("../middleware");
-const controller = require("../controllers/auth.controller.js");
+const { verifySignup, authJwt } = require("../middleware");
+const controller = require("../controllers/auth.controller");
 const router = require("express").Router();
 
 module.exports = (app) => {
@@ -13,7 +13,7 @@ module.exports = (app) => {
 
   router.post(
     "/signup",
-    [authJwt.isValidUID, verifySignUp.checkDuplicateUsername],
+    [authJwt.isValidUID, verifySignup.checkDuplicateUsername],
     controller.signup
   );
 

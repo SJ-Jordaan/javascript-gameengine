@@ -11,8 +11,8 @@ checkDuplicateUsername = (req, res, next) => {
   });
 };
 
-const verifySignUp = {
+const verifySignup = {
   checkDuplicateUsername: checkDuplicateUsername,
 };
 
-module.exports = verifySignUp;
+module.exports = verifySignup;
