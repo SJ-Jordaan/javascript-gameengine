@@ -11,22 +11,10 @@ exports.create = (req, res) => {
     return;
   }
 
-  if (!req.body.id) {
-    res.status(400).send({
-      message: "Missing creator id",
-    });
-  }
-
-  if (!User.findByPk(req.body.id)) {
-    res.status(404).send({
-      message: "Creator does not exist",
-    });
-  }
-
   const game = {
     name: req.body.name,
     description: req.body.description,
-    userId: req.body.id,
+    userId: req.userId,
   };
 
   Game.create(game)
@@ -43,7 +31,7 @@ exports.create = (req, res) => {
 // Retrieve all Games from the database.
 exports.findAll = (req, res) => {
   return Game.findAll({
-    include: [{ model: User, attributes: ["username"], as: "creator" }],
+    include: [{ model: User, attributes: ["username"] }],
   })
     .then((games) => {
       return res.send(games);

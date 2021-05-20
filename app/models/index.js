@@ -20,10 +20,7 @@ db.sequelize = sequelize;
 db.user = require("./user.model")(sequelize, Sequelize);
 db.game = require("./game.model")(sequelize, Sequelize);
 
-db.user.hasMany(db.game, { as: "games" });
-db.game.belongsTo(db.user, {
-  foreignKey: "id",
-  as: "creator",
-});
+db.user.hasMany(db.game);
+db.game.belongsTo(db.user);
 
 module.exports = db;
